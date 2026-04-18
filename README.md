@@ -28,21 +28,13 @@ CityPulse/
 │       └── styles/         # Global stiller (index.css)
 ```
 
-## 🛠️ Kurulum ve Çalıştırma
-
-Projede şimdilik NodeJS (`npm`) gibi derleyiciler gerekli DEĞİLDİR. Sadece yerel bir sunucu çalıştırmanız yeterlidir.
-
-1. Depoyu bilgisayarınıza indirin (clone).
-2. `frontend` klasörüne gidin.
-3. Herhangi bir yerel sunucu başlatın. Örneğin Python yüklüyse terminale şunu yazın:
-   ```bash
-   python -m http.server 3000
-   ```
-4. Tarayıcınızdan `http://localhost:3000` adresine gidin.
 
 ## 📸 Ekran Görüntüleri
 
-> _(Geliştirici Notu: Buraya daha sonra uygulamanın ekran görüntüleri eklenecektir.)_
+<img width="1919" height="1087" alt="Ekran görüntüsü 2026-04-18 040939" src="https://github.com/user-attachments/assets/37c9b524-3efd-4cb6-9668-49c71af00016" />
+
+<img width="1909" height="1025" alt="Ekran görüntüsü 2026-04-18 040802" src="https://github.com/user-attachments/assets/8a1278f7-4a17-4f39-ac24-bfd53ae1a59d" />
+
 
 ---
 *Bu proje modern frontend ekosistemini (React Bileşen Yapısı) kavramak ve kullanıcılara faydalı yerel servisler üretmek amacıyla açık kaynaklı olarak geliştirilmiştir.*
