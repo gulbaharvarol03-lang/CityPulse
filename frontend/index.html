@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CityPulse - Şehrin Ritmini Yakala</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./src/styles/index.css">
+  
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- Synchronous loading with Babel -->
+  <script type="text/babel" src="./src/services/mockData.js"></script>
+  <script type="text/babel" src="./src/components/LoginModal.js"></script>
+  <script type="text/babel" src="./src/components/Header.js"></script>
+  <script type="text/babel" src="./src/components/PlaceCard.js"></script>
+  <script type="text/babel" src="./src/pages/Home.js"></script>
+  <script type="text/babel" src="./src/App.js"></script>
+  
+  <!-- Mount React App after all scripts are loaded -->
+  <script type="text/babel">
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<React.StrictMode><window.App /></React.StrictMode>);
+  </script>
+</body>
+</html>
