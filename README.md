@@ -1,40 +1,92 @@
-# CityPulse 🌆
+# CityPulse 🌆 - Türkiye Gerçek Mekan Rehberi
 
-CityPulse, özellikle öğrenciler ve dijital göçebeler için geliştirilmiş, bütçe dostu ve çalışmaya uygun mekanları bulmayı sağlayan modern bir React web uygulamasıdır. 
+CityPulse, Türkiye'nin **81 ili ve 973 ilçesinin tamamında** (örneğin **Afyonkarahisar / Sandıklı**, İstanbul / Kadıköy, Ankara / Çankaya vb.) dilediğiniz herhangi bir kategorideki (**pizzacı, kafe, kütüphane, pideci, market, restoran**) işletmeleri **tamamen gerçek verilerle** bulmanızı sağlayan modern bir web uygulamasıdır.
 
-Kullanıcılar bulundukları konumu (GPS) kullanarak etraflarındaki kafeleri, pizzacıları, marketleri ve kütüphaneleri fiyat seviyeleriyle birlikte listeleyebilirler.
+---
 
-## 🚀 Özellikler
+## 🚀 Yeni Özellikler & Gerçek Veri Entegrasyonu
 
-- **Modern ve Premium Tasarım**: Glassmorphism detayları ve uyumlu renk paleti ile göze hitap eden UI.
-- **Canlı Konum Entegrasyonu**: Tarayıcı GPS servisiyle kullanıcının konumunu anında algılama.
-- **Mock Veri & Foursquare API Uyumluluğu**: Foursquare API anahtarınız yoksa bile içerisinde barındırdığı kendi yerel taslak verileriyle (Mock) harika bir şekilde çalışır.
-- **Kategori Bazlı Listeleme**: Bütçe Dostu (₺) ve Çalışmaya Uygun (kütüphane, kafe vb.) filtreleri içerir.
-- **Giriş Yap Animasyonu**: Auth simülasyonu sağlayan şık bir giriş penceresi modülü.
+1. **81 İl & 973 İlçe Tam Kapsama**:
+   - Eski 5 şehir kısıtlaması kaldırıldı.
+   - Türkiye'nin tüm illeri ve tüm ilçeleri entegre edildi.
+   - Seçilen ile göre (örneğin *Afyonkarahisar*) ilçeler (*Sandıklı, Dinar, Bolvadin, Emirdağ...*) dinamik olarak listelenir.
 
-## 📁 Proje Klasör Yapısı
+2. **Gerçek Mekan Verisi (Canlı Arama & Doğrulama)**:
+   - **Afyonkarahisar / Sandıklı**'da arama yapıldığında ilçedeki gerçek işletmeler (*Terra Pizza Sandıklı Ece Şubesi, Papyon Pizza & Fast Food, Pizza Mizza Sandıklı, One Pizza Cafe vb.*) listelenir.
+   - Her mekan için gerçek adres, Google Haritalar linki (*"Haritada Gör"*), telefon numarası, gerçek kullanıcı puanı ve örnek menü gösterilir.
 
-Modern gelişime uygun profesyonel klasör yapısı kullanılmıştır:
+3. **Çoklu Sağlayıcı (Multi-Provider) Desteği**:
+   - **Canlı Gerçek Arama Motoru (Varsayılan - Ücretsiz & Sıfır Kurulum)**: Hiçbir API anahtarına veya kredi kartına ihtiyaç duymadan gerçek işletme verilerini anında bulur.
+   - **Google Places API**: Kendi Google Cloud API anahtarınızı girerek doğrudan Google Haritalar veritabanından veri çekebilme imkanı.
+   - **Foursquare Places API (Yeni 2026 Sürümü)**: FSQ OS altyapısı ve `X-Places-Api-Version: 2025-06-17` başlığıyla uyumlu yeni endpoint.
+
+4. **GPS ile Otomatik Konum Bulma**:
+   - GPS butonuna tıklandığında mevcut konum koordinatlarınız alınır, ters coğrafi kodlama (Reverse Geocoding) ile bulunduğunuz il ve ilçe otomatik tespit edilir.
+
+5. **Akıllı Filtreler**:
+   - Bütçe Dostu (₺), Çalışmaya Uygun (kafe, kütüphane) ve Yüksek Puanlı (4.5+) işletmeleri tek tıkla filtreleme.
+
+---
+
+## 🛠️ Kurulum ve Çalıştırma
+
+### Yöntem 1: Gerçek Veri Sunucusu ile Çalıştırma (Önerilen)
+
+Python Flask arka uç sunucusunu başlatarak tam gerçek zamanlı veri çekme motorunu aktif hale getirebilirsiniz:
+
+```bash
+# Gerekli kütüphaneleri yükleyin (zaten yüklü olabilir)
+pip install -r requirements.txt
+
+# Sunucuyu başlatın
+python server.py
+```
+
+Tarayıcınızdan **`http://localhost:5000`** adresine gidin.
+
+### Yöntem 2: Yalnızca Ön Yüz (Statik) Olarak Çalıştırma
+
+Python'ın yerel HTTP sunucusu ile de ön yüzü doğrudan çalıştırabilirsiniz:
+
+```bash
+cd frontend
+python -m http.server 3000
+```
+
+Tarayıcınızdan **`http://localhost:3000`** adresine gidin.
+
+---
+
+## ⚙️ API Ayarları Nasıl Yapılır?
+
+Uygulamanın sağ üst köşesindeki **"Canlı Gerçek Veri"** butonuna (⚙️) tıklayarak ayarlar penceresini açabilir, Google Maps veya Foursquare API anahtarlarınızı kaydedebilirsiniz. Anahtarlar tarayıcınızın `localStorage` alanında güvenle tutulur.
+
+---
+
+## 📁 Proje Yapısı
 
 ```text
 CityPulse/
-├── frontend/
-│   ├── index.html          # Ana uygulama iskeleti (React/Babel yükleyicisi)
-│   └── src/
-│       ├── assets/         # Medya, ikon vb. kaynaklar (gelecek güncellemeler için)
-│       ├── components/     # Yeniden kullanılabilir parçalar (Header.js, PlaceCard.js, vb.)
-│       ├── pages/          # Tam ekran bileşenler (Home.js vb.)
-│       ├── services/       # Veri çekme & API işlemleri (mockData.js)
-│       └── styles/         # Global stiller (index.css)
+├── server.py                  # Canlı veri arama motoru, API proxy ve Flask sunucusu
+├── requirements.txt           # Python bağımlılıkları (Flask, Flask-Cors, Requests)
+├── README.md                  # Proje dokümantasyonu
+└── frontend/
+    ├── index.html             # Ana HTML iskeleti
+    └── src/
+        ├── services/
+        │   ├── turkeyCities.js   # 81 İl ve 973 İlçe veri seti
+        │   ├── placesService.js  # Birleşik mekan arama servisi
+        │   └── mockData.js       # Yedek taslak veri kaynağı
+        ├── components/
+        │   ├── Header.js         # Başlık, veri kaynağı göstergesi ve modal tetikleyiciler
+        │   ├── PlaceCard.js      # Gerçek veri rozeti, harita linki ve telefon içeren mekan kartı
+        │   ├── ApiSettingsModal.js # Sağlayıcı seçimi ve API anahtarı ayarları
+        │   └── LoginModal.js     # Kullanıcı giriş modülü
+        ├── pages/
+        │   └── Home.js           # İl/İlçe seçimi, arama formu ve sonuç listesi
+        └── styles/
+            └── index.css         # Modern cam (glassmorphism) ve responsive tasarım stilleri
 ```
 
-
-## 📸 Ekran Görüntüleri
-
-<img width="1919" height="1087" alt="Ekran görüntüsü 2026-04-18 040939" src="https://github.com/user-attachments/assets/37c9b524-3efd-4cb6-9668-49c71af00016" />
-
-<img width="1909" height="1025" alt="Ekran görüntüsü 2026-04-18 040802" src="https://github.com/user-attachments/assets/8a1278f7-4a17-4f39-ac24-bfd53ae1a59d" />
-
-
 ---
-*Bu proje modern frontend ekosistemini (React Bileşen Yapısı) kavramak ve kullanıcılara faydalı yerel servisler üretmek amacıyla açık kaynaklı olarak geliştirilmiştir.*
+*CityPulse - Gerçek mekan verileriyle şehrinizi ve ilçenizi keşfedin.*
