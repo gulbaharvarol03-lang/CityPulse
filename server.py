@@ -505,7 +505,7 @@ def search_nominatim_places(query, city, district):
 
     for st in search_terms:
         try:
-            url = f"https://nominatim.openstreetmap.org/search?q={urllib.parse.quote(st)}&format=json&limit=5&addressdetails=1"
+            url = f"https://nominatim.openstreetmap.org/search?q={urllib.parse.quote(st)}&countrycodes=tr&format=json&limit=5&addressdetails=1"
             req = urllib.request.Request(url, headers={"User-Agent": "CityPulseApp/2.0", "Accept-Language": "tr"})
             with urllib.request.urlopen(req, timeout=5) as r:
                 data = json.loads(r.read().decode())

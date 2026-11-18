@@ -345,7 +345,7 @@ const fetchPlaces = async (query, city, district, lat, lng) => {
   // Try OpenStreetMap Nominatim for client-side geocoding and POI
   try {
     const searchQuery = `${query || "mekan"} ${district !== "Tümü" ? district : ""} ${city} Turkey`;
-    const nomUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(searchQuery)}&format=json&limit=10&addressdetails=1`;
+    const nomUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(searchQuery)}&countrycodes=tr&format=json&limit=10&addressdetails=1`;
     const nomResp = await fetch(nomUrl, { headers: { "Accept-Language": "tr" } });
     if (nomResp.ok) {
       const nomData = await nomResp.json();
